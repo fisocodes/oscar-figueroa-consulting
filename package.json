@@ -1,0 +1,18 @@
+{
+  "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fisocodes/oscar-figueroa-consultancy.git"
+},
+"engines": {
+"node": ">=22.16.0"},
+"scripts": {},
+  "packageManager": "yarn@4.9.1",
+  "homepage": "https://github.com/fisocodes/oscar-figueroa-consultancy",
+  "contributors": [
+    {
+      "name": "Oscar Figueroa",
+      "email": "fisocodes@gmail.com",
+      "url": "https://oscarfigueroa.consulting"
+    }
+  ]
+}
