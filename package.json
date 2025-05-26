@@ -4,7 +4,8 @@
     "url": "git+https://github.com/fisocodes/oscar-figueroa-consultancy.git"
   },
   "scripts": {
-  "preinstall": "npx only-allow yarn"},
+    "preinstall": "npx only-allow yarn"
+  },
   "engines": {
     "node": ">=22.16.0"
   },
