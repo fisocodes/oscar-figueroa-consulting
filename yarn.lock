@@ -5,8 +5,19 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"oscar-figueroa-consultancy@workspace:.":
+"allow-only@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "allow-only@npm:0.1.3"
+  bin:
+    allow-only: dist/bin.js
+  checksum: 10c0/8fc1337d8aee8169613c1579a10c4bf6b399af63c0930658e70071058f49b5d27ffafffaeba057887883c5f24e19f3f5a8954311e7eb5fba004fb1ead45379bc
+  languageName: node
+  linkType: hard
+
+"root-workspace-0b6124@workspace:.":
   version: 0.0.0-use.local
-  resolution: "oscar-figueroa-consultancy@workspace:."
+  resolution: "root-workspace-0b6124@workspace:."
+  dependencies:
+    allow-only: "npm:^0.1.3"
   languageName: unknown
   linkType: soft
