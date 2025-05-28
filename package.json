@@ -4,7 +4,8 @@
     "url": "git+https://github.com/fisocodes/oscar-figueroa-consultancy.git"
   },
   "scripts": {
-    "preinstall": "npx only-allow yarn"
+    "preinstall": "npx only-allow yarn",
+    "prepare": "husky"
   },
   "engines": {
     "node": ">=22.16.0"
@@ -18,7 +19,13 @@
       "url": "https://oscarfigueroa.consulting"
     }
   ],
-  "dependencies": {
-    "allow-only": "^0.1.3"
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
+    "husky": "^9.1.7",
+    "only-allow": "^1.2.1",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.8.3"
   }
 }
