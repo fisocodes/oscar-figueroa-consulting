@@ -1,0 +1,27 @@
+yarn ts-standard
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$BRANCH" = "main" ]; then
+    echo "Main branch is restricted."
+    exit 1
+fi
+
+if [ "$BRANCH" = "Development" ]; then
+    echo "Development branch is restricted."
+    exit 1
+fi
+
+if ! echo "$BRANCH" | grep -E -q "^(feature|refactor|format|fix|hotfix|documentation)/[0-9]+$"; then
+    echo "Branch name not allowed."
+    exit 1
+fi
+
+git fetch origin development
+LOCAL_DEVELOPMENT=$(git rev-parse refs/heads/development)
+REMOTE_DEVELOPMENT=$(git rev-parse refs/remotes/origin/development)
+
+if [ "$LOCAL_DEVELOPMENT" != "$REMOTE_DEVELOPMENT" ]; then
+    echo "Your local development branch is not up to date. Please pull the latest changes and rebase before committing."
+    exit 1
+fi
