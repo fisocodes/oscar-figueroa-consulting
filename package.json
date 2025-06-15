@@ -5,7 +5,10 @@
   },
   "scripts": {
     "preinstall": "npx only-allow yarn",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "engines": {
     "node": ">=22.16.0"
@@ -23,9 +26,17 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/types": "^19.8.1",
+    "@types/node": "24.0.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19",
     "husky": "^9.1.7",
     "only-allow": "^1.2.1",
     "ts-standard": "^12.0.2",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
