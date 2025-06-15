@@ -46,6 +46,8 @@ Oscar Figueroa Consulting is a professional website. It is intended to show proj
     yarn install
     ```
 
+#### Note: Install the yarn Editor SDKs if needed. You can follow the instructions from the [documentation](https://yarnpkg.com/getting-started/editor-sdks).
+
 ## Authors
 
 - [@fisocodes](https://www.github.com/fisocodes)
