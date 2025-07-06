@@ -4,7 +4,6 @@
     "url": "git+https://github.com/fisocodes/oscar-figueroa-consultancy.git"
   },
   "scripts": {
-    "preinstall": "npx only-allow yarn",
     "prepare": "husky",
     "dev": "next dev",
     "build": "next build",
