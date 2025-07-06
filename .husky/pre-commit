@@ -1,4 +1,4 @@
-yarn ts-standard
+npx ts-standard
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
