@@ -22,7 +22,11 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@i18n/*": ["i18n/*"]
+    },
   },
   "include": [
     "next-env.d.ts",
