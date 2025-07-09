@@ -36,27 +36,21 @@ Oscar Figueroa Consulting is a professional website. It is intended to show proj
 
 ## Installation
 
-1. Install yarn
+1. Install dependencies
 
     ```bash
-    npm install -g corepack
+    npm install
     ```
-2. Install dependencies
+2. Run project
     ```bash
-    yarn install
+    npm run dev
     ```
 
-#### Note: Install the yarn Editor SDKs if needed. You can follow the instructions from the [documentation](https://yarnpkg.com/getting-started/editor-sdks).
+#### Do not forget to set up the environment variables
 
 ## Authors
 
 - [@fisocodes](https://www.github.com/fisocodes)
-
-
-## Acknowledgements
-
- - Bespan
-
 
 ## Contributing
 
