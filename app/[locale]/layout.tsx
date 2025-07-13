@@ -5,6 +5,8 @@ import { routing } from '@i18n/routing'
 import React from 'react'
 
 import '../globals.css'
+import '@fontsource-variable/oxanium'
+import '@fontsource-variable/montserrat'
 
 export function generateStaticParams (): any[] {
   return routing.locales.map(locale => ({ locale }))
@@ -24,7 +26,10 @@ export default async function LocaleLayout ({
 
   return (
     <html lang={locale}>
-      <body>
+      <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+      </head>
+      <body className='bg-slate-100'>
         <NextIntlClientProvider locale={locale}>
           {children}
         </NextIntlClientProvider>
