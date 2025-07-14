@@ -12,7 +12,7 @@ interface HeroHeaderProps {
 
 export function HeroHeader ({ children }: HeroHeaderProps): React.ReactElement {
   return (
-    <div className='hero-header hidden h-dvh flex flex-col justify-center gap-10 p-15'>
+    <div className='h-dvh flex flex-col justify-center gap-10 p-15'>
       <div className='h-1/2 flex items-end'>
         {children[0]}
       </div>
