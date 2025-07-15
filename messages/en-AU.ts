@@ -31,7 +31,26 @@ const site: Site = {
       ]
     },
     collaborations: {
-      items: []
+      items: [
+        {
+          alt: 'Advancio logo',
+          imageSrc: '/assets/advancio.svg',
+          description: 'Software solutions for the American market',
+          url: 'https://www.advancio.com/'
+        },
+        {
+          alt: 'Enologia Integral logo',
+          imageSrc: '/assets/enologia-integral.svg',
+          description: 'PWAs for the wine market in Baja California',
+          url: 'https://enologiaintegral.com.mx/'
+        },
+        {
+          alt: 'MT3 logo',
+          imageSrc: '/assets/mt3.svg',
+          description: 'Software solutions for the Swedish market',
+          url: 'https://mt3.se/'
+        }
+      ]
     },
     testimonials: {
       items: []
