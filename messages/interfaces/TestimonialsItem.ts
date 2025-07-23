@@ -2,6 +2,6 @@ export interface TestimonialsItem {
   firtName: string
   lastName: string
   role: string
-  email: string
+  linkedIn: string
   quote: string
 }

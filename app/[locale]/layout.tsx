@@ -25,7 +25,7 @@ export default async function LocaleLayout ({
   setRequestLocale(locale)
 
   return (
-    <html lang={locale} className='snap-y snap-proximity scroll-smooth'>
+    <html lang={locale} className='scroll-smooth'>
       <head>
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </head>
