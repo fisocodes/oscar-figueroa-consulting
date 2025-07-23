@@ -31,10 +31,35 @@ const site: Site = {
       ]
     },
     collaborations: {
-      items: []
+      items: [{
+        alt: 'Advancio logo',
+        imageSrc: '/assets/advancio.svg',
+        description: 'Soluciones de software para el mercado americano',
+        url: 'https://www.advancio.com/'
+      },
+      {
+        alt: 'Enologia Integral logo',
+        imageSrc: '/assets/enologia-integral.svg',
+        description: 'PWAs para el mercado vitivinícola en Baja California',
+        url: 'https://enologiaintegral.com.mx/'
+      },
+      {
+        alt: 'MT3 logo',
+        imageSrc: '/assets/mt3.svg',
+        description: 'Soluciones de software para el mercado Sueco',
+        url: 'https://mt3.se/'
+      }]
     },
     testimonials: {
-      items: []
+      items: [
+        {
+          firtName: 'Eugenio',
+          lastName: 'Verdugo',
+          role: 'Project Manager',
+          linkedIn: 'https://www.linkedin.com/in/euveos/',
+          quote: 'Oscar es un individuo comprometido y bastante capaz. Adquiere conocimiento rápido y lo aplica no solo con destreza sino con la intención de optimizar y mejorar sus propios procesos y habilidades. Habiendo trabajado con él, puedo decir que algunas de sus habilidades más fuertes son el compañerismo, la dedicación, la curiosidad y el esfuerzo.'
+        }
+      ]
     }
   }
 }
