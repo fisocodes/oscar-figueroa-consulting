@@ -1,10 +1,18 @@
 import React, { useEffect, useRef } from 'react'
 
+interface LooperSettings {
+  timeout: number
+}
 interface LooperProps {
   children: React.ReactElement[]
+  settings?: LooperSettings
 }
 
-export function Looper ({ children }: LooperProps): React.ReactElement {
+const defaultSettings: LooperSettings = {
+  timeout: 5000
+}
+
+export function Looper ({ children, settings = defaultSettings }: LooperProps): React.ReactElement {
   const ref = useRef<HTMLDivElement>(null)
 
   function hideElement (element: Element): void {
@@ -29,7 +37,7 @@ export function Looper ({ children }: LooperProps): React.ReactElement {
   }
 
   function setSwitchTimeout (element: Element, index: number): void {
-    setTimeout(() => switchElement(element), index * 5000)
+    setTimeout(() => switchElement(element), index * settings.timeout)
   }
 
   function startSwitching (): void {
@@ -40,7 +48,7 @@ export function Looper ({ children }: LooperProps): React.ReactElement {
     if (ref.current !== null) {
       startSwitching()
 
-      const interval = setInterval(startSwitching, ref.current.children.length * 5000)
+      const interval = setInterval(startSwitching, ref.current.children.length * settings.timeout)
 
       return () => {
         clearInterval(interval)
@@ -48,5 +56,9 @@ export function Looper ({ children }: LooperProps): React.ReactElement {
     }
   }, [])
 
-  return <div ref={ref}>{children.map((child, index) => <div key={index} className='hidden'>{child}</div>)}</div>
+  return (
+    <div ref={ref}>
+      {children.map((child, index) => <div key={index} className='hidden'>{child}</div>)}
+    </div>
+  )
 }

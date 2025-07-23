@@ -2,6 +2,7 @@
 
 @theme {
     --animate-fadeInTop: fade-in-top 1s ease-out;
+    --animate-fadeIn: fade-in 1s ease-out;
 
     @keyframes fade-in-top {
         0% {
@@ -11,6 +12,15 @@
         100% {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+        opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 }
