@@ -13,7 +13,7 @@ const site: Site = {
           description: 'Crafting responsive, user-friendly websites with modern design and seamless functionality'
         },
         {
-          title: 'Search Engine Optimization',
+          title: 'SEO',
           description: 'Boosting search visibility and organic traffic with strategic, data-driven optimization'
         },
         {
