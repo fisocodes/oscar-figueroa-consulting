@@ -12,7 +12,7 @@ export function HeroHeaderTitle ({ level = 1, children: title }: HeroHeaderTitle
       className='text-5xl lg:text-9xl font-bold font-[Oxanium_Variable] text-slate-700 flex flex-col gap-y-3'
     >
       {title.split(' ').map(
-        (word, i) => <span key={i} className='animate-fadeInTop'>{word}</span>
+        (word, i) => <span key={i} className='animate-fadeInTop break-all'>{word}</span>
       )}
     </Order>
   )
