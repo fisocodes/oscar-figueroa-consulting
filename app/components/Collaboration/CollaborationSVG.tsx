@@ -6,13 +6,6 @@ interface CollaborationSVGProps {
   url?: string
 }
 
-export function CollaborationSVG ({ src, alt, url }: CollaborationSVGProps): React.ReactElement {
-  if (url !== undefined || url !== '') {
-    return (
-      <a href={url} className='flex justify-center' target='_blank' rel='noopener noreferrer'>
-        <img src={src} alt={alt} className='max-w-1/2' />
-      </a>
-    )
-  }
-  return <img src={src} alt={alt} className='max-w-1/2' />
+export function CollaborationSVG ({ src, alt }: CollaborationSVGProps): React.ReactElement {
+  return <img src={src} alt={alt} className='max-w-1/3 max-h-10' />
 }
