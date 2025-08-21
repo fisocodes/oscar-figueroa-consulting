@@ -1,2 +1,6 @@
-export * from './HeroHeader'
+export * from './Hero'
 export * from './Collaboration'
+export * from './Testimonial'
+export * from './CollaborationsSection'
+export * from './HeroSection'
+export * from './TestimonialsSection'
