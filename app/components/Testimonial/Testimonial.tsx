@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Quote } from './Quote'
 import { Footer } from './Footer'
