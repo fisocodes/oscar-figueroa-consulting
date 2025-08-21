@@ -1,11 +1,11 @@
 import { JSX } from 'react'
 
-interface HeroHeaderTitleProps {
+interface HeroHeadlineProps {
   level?: 1 | 2 | 3 | 4 | 5 | 6
   children: string
 }
 
-export function HeroHeaderTitle ({ level = 1, children: title }: HeroHeaderTitleProps): React.ReactElement<HeroHeaderTitleProps> {
+export function HeroHeadline ({ level = 1, children: title }: HeroHeadlineProps): React.ReactElement<HeroHeadlineProps> {
   const Order = `h${level}` as keyof JSX.IntrinsicElements
   return (
     <Order

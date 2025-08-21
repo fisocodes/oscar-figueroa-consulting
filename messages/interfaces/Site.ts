@@ -1,5 +1,6 @@
-import { Home } from './Home'
+import { Page } from './Page'
 
 export interface Site {
-  home: Home
+  pages: Record<string, Page>
+  components?: Record<string, unknown>
 }

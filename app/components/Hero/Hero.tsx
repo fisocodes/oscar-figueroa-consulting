@@ -1,16 +1,16 @@
 import React from 'react'
-import { HeroHeaderTitle } from './HeroHeaderTitle'
-import { HeroHeaderDescription } from './HeroHeaderDescription'
+import { HeroHeadline } from './HeroHeadline'
+import { HeroSubheadline } from './HeroSubheadline'
 import { IconChevronCompactDown } from '@tabler/icons-react'
 
 interface HeroHeaderProps {
   children: [
-    React.ReactElement<typeof HeroHeaderTitle>,
-    React.ReactElement<typeof HeroHeaderDescription>
+    React.ReactElement<typeof HeroHeadline>,
+    React.ReactElement<typeof HeroSubheadline>
   ]
 }
 
-export function HeroHeader ({ children }: HeroHeaderProps): React.ReactElement {
+export function Hero ({ children }: HeroHeaderProps): React.ReactElement {
   return (
     <div className='h-dvh flex flex-col justify-center gap-10 p-15'>
       <div className='h-1/2 flex items-end'>
@@ -24,5 +24,5 @@ export function HeroHeader ({ children }: HeroHeaderProps): React.ReactElement {
   )
 }
 
-HeroHeader.Title = HeroHeaderTitle
-HeroHeader.Description = HeroHeaderDescription
+Hero.Title = HeroHeadline
+Hero.Description = HeroSubheadline
