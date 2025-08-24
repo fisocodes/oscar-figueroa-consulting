@@ -1,0 +1,39 @@
+name: Development - Build and Deployment
+on: 
+    workflow_dispatch:
+    push:
+        branches:
+            - development
+jobs:
+    website-build:
+        name: Website build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checking out branch
+              uses: actions/checkout@v5
+            - name: Restoring cache
+              id: cache-npm
+              uses: actions/cache@v4
+              with:
+                path: | 
+                  ~/.npm
+                  .next/cache
+                  node_modules
+                key: ${{runner.os}}-${{hashFiles('**/package-lock.json')}}
+                restore-keys: ${{runner.os}}-
+            - name: Installing dependencies
+              run: npm run install
+            - name: Building website
+              run: npm run build
+            - name: Creating artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: development
+                path: out
+                if-no-files-found: error
+                retention-days: 1
+                compression-level: 9
+                overwrite: true
+                include-hidden-files: true
+              
+
