@@ -25,6 +25,10 @@ jobs:
               run: npm install
             - name: Building website
               run: npm run build
+              env:
+                DOMAIN: ${{env.DEV_DOMAIN}}
+                EN_AU_DOMAIN: ${{env.DEV_EN_AU_DOMAIN}}
+                ES_MX_DOMAIN: ${{env.DEV_ES_MX_DOMAIN}}
             - name: Creating artifacts
               uses: actions/upload-artifact@v4
               with:
