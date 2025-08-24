@@ -22,7 +22,7 @@ jobs:
                 key: ${{runner.os}}-${{hashFiles('**/package-lock.json')}}
                 restore-keys: ${{runner.os}}-
             - name: Installing dependencies
-              run: npm run install
+              run: npm install
             - name: Building website
               run: npm run build
             - name: Creating artifacts
