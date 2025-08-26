@@ -3,8 +3,9 @@ import type { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 
 export default function robots (): MetadataRoute.Robots {
-  console.log(process.env.ROBOTS, process.env.ROBOTS?.includes('noindex'))
-  if (process.env.ROBOTS?.includes('noindex') !== true) {
+  const robots = process.env.ROBOTS
+  const avoidIndex = typeof robots === 'string' && robots.includes('noindex')
+  if (avoidIndex) {
     console.log('returning disallow')
     return {
       rules: {
