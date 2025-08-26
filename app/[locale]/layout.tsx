@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@i18n/routing'
+import { Metadata } from 'next'
 import React from 'react'
 
 import '../globals.css'
@@ -9,6 +10,10 @@ import '@fontsource-variable/montserrat'
 
 export function generateStaticParams (): Array<{ locale: string }> {
   return routing.locales.map(locale => ({ locale }))
+}
+
+export const metadata: Metadata = {
+  robots: process.env.ROBOTS
 }
 
 export default async function LocaleLayout ({
