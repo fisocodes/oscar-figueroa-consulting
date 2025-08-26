@@ -44,9 +44,10 @@ Oscar Figueroa Consulting is a professional website. It is intended to show proj
 2. Set enviroment variables
 
     ```
-    DOMAIN=localhost:3000  //Default domain for sitemap
-    EN_AU_DOMAIN=localhost:3000
-    ES_MX_DOMAIN=localhost:3001
+    DOMAIN="localhost:3000"  // Default domain for sitemap
+    EN_AU_DOMAIN="localhost:3000"
+    ES_MX_DOMAIN="localhost:3001"
+    ROBOTS="noindex, nofollow" // For no indexing
     ```
 #### Note: DO NOT use protocol in the domains, Next-Intl will NOT recognize the domain properly.
 

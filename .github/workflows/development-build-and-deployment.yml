@@ -29,6 +29,7 @@ jobs:
                 DOMAIN: ${{vars.DEV_DOMAIN}}
                 EN_AU_DOMAIN: ${{vars.DEV_EN_AU_DOMAIN}}
                 ES_MX_DOMAIN: ${{vars.DEV_ES_MX_DOMAIN}}
+                ROBOTS: ${{vars.DEV_ROBOTS}}
             - name: Creating artifacts
               uses: actions/upload-artifact@v4
               with:
