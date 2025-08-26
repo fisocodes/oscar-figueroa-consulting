@@ -5,6 +5,7 @@ export const dynamic = 'force-static'
 export default function robots (): MetadataRoute.Robots {
   console.log(process.env.ROBOTS, process.env.ROBOTS?.includes('noindex'))
   if (process.env.ROBOTS?.includes('noindex') !== true) {
+    console.log('returning disallow')
     return {
       rules: {
         userAgent: '*',
@@ -14,6 +15,7 @@ export default function robots (): MetadataRoute.Robots {
     }
   }
 
+  console.log('returning allow')
   return {
     rules: {
       userAgent: '*',
