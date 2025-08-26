@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 
 export default function robots (): MetadataRoute.Robots {
-  console.log(process.env.ROBOTS)
+  console.log(process.env.ROBOTS, process.env.ROBOTS?.includes('noindex'))
   if (process.env.ROBOTS?.includes('noindex') !== true) {
     return {
       rules: {
