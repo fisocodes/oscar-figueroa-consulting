@@ -1,9 +1,14 @@
 name: Development - Build and Deployment
+
 on: 
     workflow_dispatch:
     push:
         branches:
             - development
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
     website-build:
         name: Website build
