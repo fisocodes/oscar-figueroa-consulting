@@ -40,5 +40,19 @@ jobs:
                 compression-level: 9
                 overwrite: true
                 include-hidden-files: true
-              
-
+    s3-deployment:
+      name: Deployment to S3
+      runs-on: ubuntu-latest
+      steps:
+        - name: Downloading artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: development
+        - name: Configuring AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4.3.1
+          with: 
+            aws-region: ${{secrets.DEV_AWS_REGION}}
+            role-to-assume: ${{secrets.DEV_AWS_ROLE_ARN}}
+            role-session-name: FisoCodesDevelopmentDeployment
+        - name: Syncing files to S3
+          run: aws s3 sync ./ s3://${{secrets.DEV_AWS_S3_BUCKET_NAME}} --delete
