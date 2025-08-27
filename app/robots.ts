@@ -6,7 +6,6 @@ export default function robots (): MetadataRoute.Robots {
   const robots = process.env.ROBOTS
   const avoidIndex = typeof robots === 'string' && robots.includes('noindex')
   if (avoidIndex) {
-    console.log('returning disallow')
     return {
       rules: {
         userAgent: '*',
@@ -16,7 +15,6 @@ export default function robots (): MetadataRoute.Robots {
     }
   }
 
-  console.log('returning allow')
   return {
     rules: {
       userAgent: '*',
