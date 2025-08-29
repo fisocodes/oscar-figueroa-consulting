@@ -35,11 +35,39 @@ jobs:
                 EN_AU_DOMAIN: ${{vars.DEV_EN_AU_DOMAIN}}
                 ES_MX_DOMAIN: ${{vars.DEV_ES_MX_DOMAIN}}
                 ROBOTS: ${{vars.DEV_ROBOTS}}
-            - name: Creating artifacts
+            - name: Preparing EN-AU artifacts
+              run: |
+                mkdir ${{github.workspace}}/en-au-artifacts
+                cp -r out/_next ${{github.workspace}}/en-au-artifacts
+                cp -r out/assets ${{github.workspace}}/en-au-artifacts
+                cp out/en-AU/*.html ${{github.workspace}}/en-au-artifacts
+                cp out/en-AU/*.txt ${{github.workspace}}/en-au-artifacts
+                cp out/robots.txt ${{github.workspace}}/en-au-artifacts
+                cp out/sitemap.xml ${{github.workspace}}/en-au-artifacts
+            - name: Uploading EN-AU artifacts
               uses: actions/upload-artifact@v4
               with:
-                name: development
-                path: out
+                name: development-en-au
+                path: ${{github.workspace}}/en-au-artifacts
+                if-no-files-found: error
+                retention-days: 1
+                compression-level: 9
+                overwrite: true
+                include-hidden-files: true
+            - name: Preparing ES-MX artifacts
+              run: |
+                mkdir ${{github.workspace}}/es-mx-artifacts
+                cp -r out/_next ${{github.workspace}}/es-mx-artifacts
+                cp -r out/assets ${{github.workspace}}/es-mx-artifacts
+                cp out/es-MX/*.html ${{github.workspace}}/es-mx-artifacts
+                cp out/es-MX/*.txt ${{github.workspace}}/es-mx-artifacts
+                cp out/robots.txt ${{github.workspace}}/es-mx-artifacts
+                cp out/sitemap.xml ${{github.workspace}}/es-mx-artifacts
+            - name: Uploading ES-MX artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: development-es-mx
+                path: ${{github.workspace}}/es-mx-artifacts
                 if-no-files-found: error
                 retention-days: 1
                 compression-level: 9
@@ -50,15 +78,21 @@ jobs:
       runs-on: ubuntu-latest
       needs: website-build
       steps:
-        - name: Downloading artifacts
-          uses: actions/download-artifact@v4
-          with:
-            name: development
         - name: Configuring AWS credentials
           uses: aws-actions/configure-aws-credentials@v4.3.1
           with: 
             aws-region: ${{secrets.DEV_AWS_REGION}}
             role-to-assume: ${{secrets.DEV_AWS_ROLE_ARN}}
             role-session-name: FisoCodesDevelopmentDeployment
-        - name: Syncing files to S3
-          run: aws s3 sync ./ s3://${{secrets.DEV_AWS_S3_BUCKET_NAME}} --delete
+        - name: Downloading EN-AU artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: development-en-au
+        - name: Syncing EN-AU files to S3
+          run: aws s3 sync ./ s3://${{secrets.DEV_EN_AU_S3_BUCKET_NAME}} --delete
+        - name: Downloading ES-MX artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: development-es-mx
+        - name: Syncing ES-MX files to S3
+          run: aws s3 sync ./ s3://${{secrets.DEV_ES_MX_S3_BUCKET_NAME}} --delete
