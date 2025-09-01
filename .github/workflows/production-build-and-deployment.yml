@@ -1,0 +1,98 @@
+name: Production - Build and Deployment
+
+on: 
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+    website-build:
+        name: Website build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checking out branch
+              uses: actions/checkout@v5
+            - name: Restoring cache
+              id: cache-npm
+              uses: actions/cache@v4
+              with:
+                path: | 
+                  ~/.npm
+                  .next/cache
+                  node_modules
+                key: ${{runner.os}}-${{hashFiles('**/package-lock.json')}}
+                restore-keys: ${{runner.os}}-
+            - name: Installing dependencies
+              run: npm install
+            - name: Building website
+              run: npm run build
+              env:
+                DOMAIN: ${{vars.DOMAIN}}
+                EN_AU_DOMAIN: ${{vars.EN_AU_DOMAIN}}
+                ES_MX_DOMAIN: ${{vars.ES_MX_DOMAIN}}
+                ROBOTS: ${{vars.ROBOTS}}
+            - name: Preparing EN-AU artifacts
+              run: |
+                mkdir ${{github.workspace}}/en-au-artifacts
+                cp -r out/_next ${{github.workspace}}/en-au-artifacts
+                cp -r out/assets ${{github.workspace}}/en-au-artifacts
+                cp out/en-AU/*.html ${{github.workspace}}/en-au-artifacts
+                cp out/en-AU/*.txt ${{github.workspace}}/en-au-artifacts
+                cp out/robots.txt ${{github.workspace}}/en-au-artifacts
+                cp out/sitemap.xml ${{github.workspace}}/en-au-artifacts
+            - name: Uploading EN-AU artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: production-en-au
+                path: ${{github.workspace}}/en-au-artifacts
+                if-no-files-found: error
+                retention-days: 1
+                compression-level: 9
+                overwrite: true
+                include-hidden-files: true
+            - name: Preparing ES-MX artifacts
+              run: |
+                mkdir ${{github.workspace}}/es-mx-artifacts
+                cp -r out/_next ${{github.workspace}}/es-mx-artifacts
+                cp -r out/assets ${{github.workspace}}/es-mx-artifacts
+                cp out/es-MX/*.html ${{github.workspace}}/es-mx-artifacts
+                cp out/es-MX/*.txt ${{github.workspace}}/es-mx-artifacts
+                cp out/robots.txt ${{github.workspace}}/es-mx-artifacts
+                cp out/sitemap.xml ${{github.workspace}}/es-mx-artifacts
+            - name: Uploading ES-MX artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: production-es-mx
+                path: ${{github.workspace}}/es-mx-artifacts
+                if-no-files-found: error
+                retention-days: 1
+                compression-level: 9
+                overwrite: true
+                include-hidden-files: true
+    s3-deployment:
+      name: Deployment to S3
+      runs-on: ubuntu-latest
+      needs: website-build
+      steps:
+        - name: Configuring AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4.3.1
+          with: 
+            aws-region: ${{secrets.AWS_REGION}}
+            role-to-assume: ${{secrets.AWS_ROLE_ARN}}
+            role-session-name: FisoCodesProductionDeployment
+        - name: Downloading EN-AU artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: production-en-au
+        - name: Syncing EN-AU files to S3
+          run: aws s3 sync ./ s3://${{secrets.EN_AU_S3_BUCKET_NAME}} --delete
+        - name: Downloading ES-MX artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: production-es-mx
+        - name: Syncing ES-MX files to S3
+          run: aws s3 sync ./ s3://${{secrets.ES_MX_S3_BUCKET_NAME}} --delete
